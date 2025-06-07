@@ -1,11 +1,11 @@
 import streamlit as st
 import pickle
-import tensorflow.keras.models import load_model
-import tensorflow.keras.preprocessing.sequence as pad_sequences
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
 model = load_model("Spam-Email-Classifier.h5")
-with open("tokenizer.pickle", "rb") as f:
+with open("tokenizer.pkl", "rb") as f:
     tokenizer = pickle.load(f)
 
 def predict(text):
@@ -18,7 +18,7 @@ st.set_page_config(page_title="Spam Email Classifier", page_icon="📧")
 st.title("📩 Spam Email Classifier")
 st.markdown("Enter the email content below to check is it's spam or not.")
 
-content = st.text_input("Email Content", height=200)
+content = st.text_area("Email Content", placeholder="Type your email content here...")
 
 if st.button("Classify"):
     if content:
